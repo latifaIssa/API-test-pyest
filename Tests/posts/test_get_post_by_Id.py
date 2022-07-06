@@ -1,11 +1,8 @@
-import requests
 import json
-import jsonpath
-# from TestData import posts
-from requests.exceptions import HTTPError
+import requests
 
-baseUrl = "https://jsonplaceholder.typicode.com/"
-route = "https://jsonplaceholder.typicode.com/posts/ "
+route = "https://jsonplaceholder.typicode.com/posts/"
+
 class TestGetSpecificPost:
 
     # get valid data for id=1
@@ -14,13 +11,27 @@ class TestGetSpecificPost:
         response = requests.get(url= route + str(self.id))
         response_body = response.json()
         assert response.status_code == 200
-        assert response_body["id"] == 1
-        assert response_body["userId"] == 1
-        assert response_body["title"] == "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
-        assert response_body ["body"] == "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
 
-    #get data for invalid id
-    def test_get_specific_post(self):
+        # Opening JSON file
+        expected_json = open('../../TestData/posts.json')
+
+        # returns JSON object as  a dictionary
+        expected_posts = json.load(expected_json)
+
+        # return the expected post by id
+        expected_post = expected_posts['posts'][self.id - 1]
+
+        # Comparing the expected with actual
+        assert response_body['id'] == expected_post['id']
+        assert response_body["userId"] == expected_post["userId"]
+        assert response_body["title"] == expected_post["title"]
+        assert response_body["body"] == expected_post["body"]
+
+        # Closing file
+        expected_json.close()
+
+    # get data for invalid id
+    def test_get_specific_post_by_invalid_id(self):
         self.id = 150
         response = requests.get(url= route+str(self.id))
         response_body = response.json()
