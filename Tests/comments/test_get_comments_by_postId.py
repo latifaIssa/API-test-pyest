@@ -14,7 +14,7 @@ class TestGetSpecificPost:
         assert response.status_code == 200
 
         # Opening JSON file
-        expected_json = open('../../TestData/comments_by_post_id.json')
+        expected_json = open('TestData/comments_by_post_id.json')
 
         # returns JSON object as  a dictionary
         expected_comments = json.load(expected_json)

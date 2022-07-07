@@ -12,7 +12,7 @@ class TestPost:
         assert response.status_code == 200
 
         # Opening JSON file
-        expected_json = open('../../TestData/posts.json')
+        expected_json = open('TestData/posts.json')
 
         # returns JSON object as  a dictionary
         expected_posts = json.load(expected_json)
