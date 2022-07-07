@@ -1,5 +1,5 @@
 # API-test-pyest
-## To run and generate report use this command line: 
+## To run and generate report use this command: 
 ```
 pytest --html=report.html --self-contained-html
 ```
