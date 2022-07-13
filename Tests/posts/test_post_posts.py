@@ -1,8 +1,9 @@
+import pytest
 import requests
 
 route = "https://jsonplaceholder.typicode.com/posts/"
 
-class TestPost:
+class TestPostPosts:
 
     # valid body data
     def test_post_posts(self):
@@ -18,10 +19,7 @@ class TestPost:
     # invalid body data
     def test_post_posts_invalid_data(self):
         data={
-            "title" : "this new post",
-            "body": "this new post",
-            "userId": "",
-            "name":["Latifa"]
+
         }
         response = requests.post(route, json=data)
         response_body = response.json()
