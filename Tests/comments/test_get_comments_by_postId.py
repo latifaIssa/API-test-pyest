@@ -1,8 +1,7 @@
 import json
 import requests
 from Helpers.jsonHelper import jsonHelper
-import os
-import pprint
+
 
 route = "https://jsonplaceholder.typicode.com/comments/"
 
