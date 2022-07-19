@@ -1,9 +1,9 @@
 import requests
-import json
-from Helpers.jsonHelper import jsonHelper
+from Helpers.dataHelper import DataHelper
 from TestData import paths
+from conftest import base_url
 
-route = "https://jsonplaceholder.typicode.com/posts/"
+route = f"{base_url}/posts/"
 
 class TestGetPosts:
     def test_get_posts(self):
@@ -13,11 +13,10 @@ class TestGetPosts:
         response_body = response.json()
         assert response.status_code == 200
 
-        # Opening JSON file
-        expected_json = open(jsonHelper.get_path(paths.posts_json_path))
 
-        # returns JSON object as  a dictionary
-        expected_posts = json.load(expected_json)
+
+        #get the expected posts
+        expected_posts = DataHelper.get_expected(paths.posts_json_path)
 
         # Iterating through the json list
         for index, post in enumerate(expected_posts['posts']):
@@ -26,8 +25,6 @@ class TestGetPosts:
             assert response_body[index]["title"] == post["title"]
             assert response_body[index]["body"] == post["body"]
 
-        # Closing file
-        expected_json.close()
 
 
 

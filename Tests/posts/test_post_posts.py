@@ -1,7 +1,9 @@
 import pytest
 import requests
 
-route = "https://jsonplaceholder.typicode.com/posts/"
+from conftest import base_url
+
+route = f"{base_url}/posts/"
 
 class TestPostPosts:
 

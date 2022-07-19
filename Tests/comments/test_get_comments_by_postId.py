@@ -1,9 +1,9 @@
-import json
 import requests
-from Helpers.jsonHelper import jsonHelper
+from Helpers.dataHelper import DataHelper
 from TestData import paths
+from conftest import base_url
 
-route = "https://jsonplaceholder.typicode.com/comments/"
+route = f"{base_url}/comments/"
 
 class TestGetSpecificComment:
 
@@ -14,11 +14,8 @@ class TestGetSpecificComment:
         response_body = response.json()
         assert response.status_code == 200
 
-        # Opening JSON file
-        expected_json = open(jsonHelper.get_path(paths.comments_by_post_id_json_path))
-
-        # returns JSON object as  a dictionary
-        expected_comments = json.load(expected_json)
+        # get the expected posts
+        expected_comments = DataHelper.get_expected(paths.comments_by_post_id_json_path)
 
         # return the expected posts by id
         expected_posts_by_postId = list(filter(lambda x: x['postId'] == PARAMS['postId'], expected_comments['comments']))
@@ -30,8 +27,6 @@ class TestGetSpecificComment:
             assert response_body[index]["email"] == comment["email"]
             assert response_body[index]["body"] == comment["body"]
 
-        # Closing file
-        expected_json.close()
 
 
 
