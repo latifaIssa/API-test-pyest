@@ -1,4 +1,20 @@
-# API-test-pyest
+# API automation tests
+
+This project is used to run the Api test cases and generate the test result.
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.ffio/en/stable/) to install the dependencies.
+
+```bash
+pip install -r requirements.txt
+```
+
+## Used technologies
+- Python
+- Allure
+
+## How to run
 ### To run and generate report use this command: 
 ```
 pytest --html=report.html --self-contained-html --fromTerminal="from_terminal"
