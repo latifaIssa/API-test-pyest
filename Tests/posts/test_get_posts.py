@@ -1,6 +1,7 @@
 import requests
 import json
 from Helpers.jsonHelper import jsonHelper
+from TestData import paths
 
 route = "https://jsonplaceholder.typicode.com/posts/"
 
@@ -13,7 +14,7 @@ class TestGetPosts:
         assert response.status_code == 200
 
         # Opening JSON file
-        expected_json = open(jsonHelper.get_path('TestData/posts.json'))
+        expected_json = open(jsonHelper.get_path(paths.posts_json_path))
 
         # returns JSON object as  a dictionary
         expected_posts = json.load(expected_json)

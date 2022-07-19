@@ -1,7 +1,7 @@
 import json
 import requests
 from Helpers.jsonHelper import jsonHelper
-
+from TestData import paths
 
 route = "https://jsonplaceholder.typicode.com/comments/"
 
@@ -15,7 +15,7 @@ class TestGetSpecificComment:
         assert response.status_code == 200
 
         # Opening JSON file
-        expected_json = open(jsonHelper.get_path('TestData/comments_by_post_id.json'))
+        expected_json = open(jsonHelper.get_path(paths.comments_by_post_id_json_path))
 
         # returns JSON object as  a dictionary
         expected_comments = json.load(expected_json)
