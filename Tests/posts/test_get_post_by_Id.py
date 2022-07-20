@@ -24,7 +24,7 @@ class TestGetSpecificPost:
     # get data for invalid id
     def test_get_specific_post_by_invalid_id(self):
         self.id = 150
-        response = requests.get(url=route + str(self.id))
+        response = requests.get(url=routes.get_posts + str(self.id))
         response_body = response.json()
         assert response.status_code == 404
 
