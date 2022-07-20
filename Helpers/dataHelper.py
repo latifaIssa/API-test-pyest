@@ -1,10 +1,5 @@
 import json
-
-import requests
-
 from Helpers.jsonHelper import JsonHelper
-from TestData import paths
-
 
 class DataHelper:
 
