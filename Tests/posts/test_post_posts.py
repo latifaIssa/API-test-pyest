@@ -1,12 +1,14 @@
 import requests
+
 from TestData import routes
+
 
 class TestPostPosts:
 
     # valid body data
     def test_post_posts(self):
-        data={
-            "title" : "this new post",
+        data = {
+            "title": "this new post",
             "body": "this new post",
             "userId": "101"
         }
@@ -16,7 +18,7 @@ class TestPostPosts:
 
     # invalid body data
     def test_post_posts_invalid_data(self):
-        data={
+        data = {
 
         }
         response = requests.post(routes.get_posts, json=data)
