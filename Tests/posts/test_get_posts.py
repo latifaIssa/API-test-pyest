@@ -1,14 +1,12 @@
 import requests
 from Helpers.dataHelper import DataHelper
-from TestData import paths
-from conftest import base_url
+from TestData import paths, routes
 
-route = f"{base_url}/posts/"
 
 class TestGetPosts:
     def test_get_posts(self):
         # get the response
-        response = requests.get(url=route)
+        response = requests.get(url=routes.get_posts)
         # read the response as JSON
         response_body = response.json()
         assert response.status_code == 200

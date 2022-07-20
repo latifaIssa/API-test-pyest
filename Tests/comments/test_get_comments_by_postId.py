@@ -1,16 +1,13 @@
 import requests
 from Helpers.dataHelper import DataHelper
-from TestData import paths
-from conftest import base_url
-
-route = f"{base_url}/comments/"
+from TestData import paths, routes
 
 class TestGetSpecificComment:
 
     # get valid data for valid post Id
     def test_get_specific_comment(self):
         PARAMS = {'postId': 1}
-        response = requests.get(url= route, params=PARAMS)
+        response = requests.get(url= routes.get_comments_by_post_id, params=PARAMS)
         response_body = response.json()
         assert response.status_code == 200
 

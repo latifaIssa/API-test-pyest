@@ -1,9 +1,5 @@
-import pytest
 import requests
-
-from conftest import base_url
-
-route = f"{base_url}/posts/"
+from TestData import routes
 
 class TestPostPosts:
 
@@ -14,7 +10,7 @@ class TestPostPosts:
             "body": "this new post",
             "userId": "101"
         }
-        response = requests.post(route, json=data)
+        response = requests.post(routes.get_posts, json=data)
         response_body = response.json()
         assert response.status_code == 201
 
@@ -23,7 +19,7 @@ class TestPostPosts:
         data={
 
         }
-        response = requests.post(route, json=data)
+        response = requests.post(routes.get_posts, json=data)
         response_body = response.json()
         assert response.status_code == 201
         print(response_body)
