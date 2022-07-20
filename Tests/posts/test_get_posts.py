@@ -13,17 +13,12 @@ class TestGetPosts:
         response_body = response.json()
         assert response.status_code == 200
 
+        # initiate the data helper
+        data_helper = DataHelper(paths.posts_json_path, 'posts')
 
+        # compare data
+        compare_data = data_helper.compare_expected_with_actual(response_body)
 
-        #get the expected posts
-        expected_posts = DataHelper.get_expected(paths.posts_json_path)
-
-        # Iterating through the json list
-        for index, post in enumerate(expected_posts['posts']):
-            assert response_body[index]['id'] == post['id']
-            assert response_body[index]["userId"] == post["userId"]
-            assert response_body[index]["title"] == post["title"]
-            assert response_body[index]["body"] == post["body"]
 
 
 

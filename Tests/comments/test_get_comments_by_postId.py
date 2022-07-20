@@ -14,18 +14,11 @@ class TestGetSpecificComment:
         response_body = response.json()
         assert response.status_code == 200
 
-        # get the expected posts
-        expected_comments = DataHelper.get_expected(paths.comments_by_post_id_json_path)
+        # initiate the data helper
+        data_helper = DataHelper(paths.comments_by_post_id_json_path, 'comments', PARAMS, -1)
 
-        # return the expected posts by id
-        expected_posts_by_postId = list(filter(lambda x: x['postId'] == PARAMS['postId'], expected_comments['comments']))
-
-        # Iterating through the json list
-        for index, comment in enumerate(expected_posts_by_postId):
-            assert response_body[index]['id'] == comment['id']
-            assert response_body[index]["name"] == comment["name"]
-            assert response_body[index]["email"] == comment["email"]
-            assert response_body[index]["body"] == comment["body"]
+        # compare data
+        compare_data = data_helper.compare_expected_with_actual(response_body)
 
 
 

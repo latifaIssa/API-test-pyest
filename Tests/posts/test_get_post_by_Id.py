@@ -17,17 +17,13 @@ class TestGetSpecificPost:
         response_body = response.json()
         assert response.status_code == 200
 
-        # get the expected posts
-        expected_posts = DataHelper.get_expected(paths.posts_json_path)
+        # initiate the data helper
+        data_helper = DataHelper(paths.posts_json_path, 'posts', {}, self.id)
 
-        # return the expected post by id
-        expected_post = expected_posts['posts'][self.id - 1]
-
-        # Comparing the expected with actual
-        assert response_body['id'] == expected_post['id']
-        assert response_body["userId"] == expected_post["userId"]
-        assert response_body["title"] == expected_post["title"]
-        assert response_body["body"] == expected_post["body"]
+        # compare data
+        response_list = []
+        response_list.append(response_body)
+        compare_data = data_helper.compare_expected_with_actual(response_list)
 
 
 
