@@ -1,26 +1,30 @@
 import requests
+from conftest import base_url
 from Helpers.dataHelper import DataHelper
-from TestData import paths, routes
+from Helpers.jsonHelper import JsonHelper
+from TestData import paths
+from ddt import ddt, data, unpack
+import unittest
 
 
-class TestGetPosts:
-    def test_get_posts(self):
+@ddt
+class TestGetPosts(unittest.TestCase):
+    # initiate the csv helper
+    json_helper = JsonHelper(paths.posts_json_path)
+
+    # get data with get method
+    get_data = json_helper.get_get_data()
+
+    @data(*get_data)
+    @unpack
+    def test_get_posts(self, route, request, status_code, body, sevirty, title, expected):
         # get the response
-        response = requests.get(url=routes.get_posts)
-        # read the response as JSON
-        response_body = response.json()
-        assert response.status_code == 200
+        response = requests.get(url=base_url + route)
 
-        # initiate the data helper
-        data_helper = DataHelper(paths.posts_json_path, 'posts')
+        # assertion
+        self.assertEqual(status_code, str(response.status_code), "Status code is invalid")
 
         # compare data
-        compare_data = data_helper.compare_expected_with_actual(response_body)
-
-
-
-
-
-
+        DataHelper.compare_expected_with_actual(response.json(), expected)
 
 

@@ -1,0 +1,22 @@
+{
+  "delete_post_by_valid_id": {
+    "route": "posts/id",
+    "request": "delete",
+    "status_code": "200",
+    "body": "",
+    "sevirty": "",
+    "title": "delete post with valid id",
+    "test_id": "1",
+    "expected": {}
+  },
+  "get_post_by_invalid_id": {
+    "route": "posts/id",
+    "request": "delete",
+    "status_code": "200",
+    "body": "",
+    "sevirty": "",
+    "title": "Delete post by invalid id",
+    "test_id": "200",
+    "expected": {}
+  }
+}

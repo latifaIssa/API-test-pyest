@@ -1,0 +1,28 @@
+{
+  "add_post_with_valid_data": {
+    "route": "posts",
+    "request": "post",
+    "status_code": "201",
+    "body": "",
+    "sevirty": "",
+    "title": "add post with valid data",
+    "test_data": {
+        "title": "this new post",
+        "body": "this new post",
+        "userId": "150"
+    },
+    "expected": {}
+  },
+  "add_post_with_invalid_data": {
+    "route": "posts",
+    "request": "post",
+    "status_code": "201",
+    "body": "",
+    "sevirty": "",
+    "title": "add new post by invalid data",
+    "test_data": {
+
+    },
+    "expected": {}
+  }
+}

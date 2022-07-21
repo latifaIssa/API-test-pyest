@@ -1,20 +1,34 @@
 import requests
 
-from TestData import routes
+from Helpers.dataHelper import DataHelper
+from Helpers.jsonHelper import JsonHelper
+from TestData import paths
+from ddt import ddt, data, unpack
+import unittest
+
+from conftest import base_url
 
 
-class TestDeletePost:
+@ddt
+class TestDeletePost(unittest.TestCase):
+    # initiate the csv helper
+    json_helper = JsonHelper(paths.delete_post)
 
+    # get data with delete method
+    delete_data = json_helper.get_delete_data()
+
+    @data(*delete_data)
+    @unpack
     # Delete a post by valid id
-    def test_delete_post(self):
-        self.id = 100
-        response = requests.delete(url=routes.get_posts + str(self.id))
-        assert response.status_code == 200
-        assert response.text == "{}"
+    def test_delete_post(self, route, request, status_code, body, sevirty, title,test_id, expected):
+        # replace the id string with test_id to the route
+        new_route = route.replace('id', test_id)
 
-    # Delete a post by invalid id
-    def test_delete_post_by_invalid_id(self):
-        self.id = 200
-        response = requests.delete(url=routes.get_posts + str(self.id))
-        assert response.status_code == 200  # should be 404?
-        assert response.text == "{}"
+        # get the response
+        response = requests.delete(url=base_url + new_route)
+
+        # assertion
+        self.assertEqual(status_code, str(response.status_code), "Status code is invalid")
+
+        # compare data
+        DataHelper.compare_expected_with_actual([response.json()], [expected])

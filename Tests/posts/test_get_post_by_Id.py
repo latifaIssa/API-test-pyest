@@ -1,28 +1,37 @@
+import unittest
+
 import requests
 from Helpers.dataHelper import DataHelper
-from TestData import paths, routes
+from Helpers.jsonHelper import JsonHelper
+from TestData import paths
+from ddt import ddt, data, unpack
+
+from conftest import base_url
 
 
-class TestGetSpecificPost:
+@ddt
+class TestGetSpecificPost(unittest.TestCase):
+    # initiate the csv helper
+    json_helper = JsonHelper(paths.get_post_by_id)
 
+    # get all the data
+    get_data = json_helper.get_get_data()
+
+    @data(*get_data)
+    @unpack
     # get valid data for id=1
-    def test_get_specific_post(self):
-        self.id = 1
-        response = requests.get(url=routes.get_posts + str(self.id))
-        response_body = response.json()
-        assert response.status_code == 200
+    def test_get_specific_post(self, route, request, status_code, body, sevirty, title,test_id, expected):
+        # replace the id string with test_id to the route
+        new_route = route.replace('id', test_id)
 
-        # initiate the data helper
-        data_helper = DataHelper(paths.posts_json_path, 'posts', {}, self.id)
+        # get the response
+        response = requests.get(url=base_url + new_route)
+
+        # assertion
+        self.assertEqual(status_code, str(response.status_code), "Status code is invalid")
 
         # compare data
-        response_list = []
-        response_list.append(response_body)
-        compare_data = data_helper.compare_expected_with_actual(response_list)
+        DataHelper.compare_expected_with_actual([response.json()], [expected])
 
-    # get data for invalid id
-    def test_get_specific_post_by_invalid_id(self):
-        self.id = 150
-        response = requests.get(url=routes.get_posts + str(self.id))
-        response_body = response.json()
-        assert response.status_code == 404
+
+
