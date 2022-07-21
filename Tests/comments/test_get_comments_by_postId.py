@@ -1,4 +1,6 @@
 import requests
+
+from Helpers.csvHelper import CsvHelper
 from Helpers.dataHelper import DataHelper
 from TestData import paths
 from conftest import base_url
@@ -11,22 +13,24 @@ import unittest
 @ddt
 class TestGetSpecificComment(unittest.TestCase):
     # initiate the csv helper
-    json_helper = JsonHelper(paths.comments_by_post_id_json_path)
+    csv_helper = CsvHelper(paths.comments_by_post_id_json_path)
 
     # get data with get method
-    get_data = json_helper.get_get_data()
+    get_data = csv_helper.get_get_data()
 
     @data(*get_data)
     @unpack
-
-    # get valid data for valid post Id
-    def test_get_specific_comment(self, route, request, status_code, body, sevirty, title,test_params, expected):
+    def test_get_posts(self, route, headers, query, body, expected, status_code,
+                       testcase_title, testcase_description, testcase_severity, testcase_tag):
         # get the response
-        response = requests.get(url=base_url + route, params=test_params)
+        response = requests.get(url=base_url + route, params=headers)
 
         # assertion
         self.assertEqual(status_code, str(response.status_code), "Status code is invalid")
-        print(response.json())
+
+        # Convert the expected text to json
+        expected_result = JsonHelper.get_json(expected)
 
         # compare data
-        DataHelper.compare_expected_with_actual(response.json(), expected)
+        DataHelper.compare_expected_with_actual(response.json(), expected_result)
+

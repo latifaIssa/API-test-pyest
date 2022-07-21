@@ -1,7 +1,7 @@
-# json test data
+# csv test data
 
-comments_by_post_id_json_path = 'TestData/JSON/comments_by_post_id.json'
-posts_json_path = 'TestData/JSON/posts.json'
-get_post_by_id = 'TestData/JSON/get_post_by_id.json'
-delete_post = 'TestData/JSON/delete_post.json'
-add_post = 'TestData/JSON/add_post.json'
+comments_by_post_id_json_path = 'TestData/CSV/comments_by_post_id.csv'
+posts_json_path = 'TestData/CSV/posts.csv'
+get_post_by_id = 'TestData/CSV/get_post_by_id.csv'
+delete_post = 'TestData/CSV/delete_post.csv'
+add_post = 'TestData/CSV/add_post.csv'

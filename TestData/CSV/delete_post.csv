@@ -1,0 +1,3 @@
+request,route,headers,query,body,expected_result,status_code,testcasse_title,testcasse_description,testcasse_sevirty,testcasse_tag,classification
+delete,posts/id,"1",,,,200,delete post with valid id,delete post with valid id,,,
+delete,posts/id,"200",,,,200,Delete post by invalid id,Delete post by invalid id,,,

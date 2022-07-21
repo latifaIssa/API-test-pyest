@@ -1,0 +1,8 @@
+request,route,headers,query,body,expected_result,status_code,testcasse_title,testcasse_description,testcasse_sevirty,testcasse_tag,classification
+get,posts/id,"""1""",,,"{
+      ""userId"": 1,
+      ""id"": 1,
+      ""title"": ""sunt aut facere repellat provident occaecati excepturi optio reprehenderit"",
+      ""body"": ""quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto""
+    }",200,Get post by valid id,Get post by valid id,,,
+get,posts/id,"""200""",,,,200,Get post by invalid id,Get post by invalid id,,,

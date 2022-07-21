@@ -1,0 +1,7 @@
+request,route,headers,query,body,expected_result,status_code,testcasse_title,testcasse_description,testcasse_sevirty,testcasse_tag,classification
+post,posts/,,"{
+        ""title"": ""this new post"",
+        ""body"": ""this new post"",
+        ""userId"": ""150""
+    }",,,201,add post with valid data,add post with valid data,,,
+post,posts/,,{},,,201,add new post by invalid data,add new post by invalid data,,,

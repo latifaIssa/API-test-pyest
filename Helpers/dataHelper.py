@@ -1,7 +1,7 @@
 class DataHelper:
 
     @staticmethod
-    def compare_expected_with_actual( actual, expected):
+    def compare_expected_with_actual(actual, expected):
         # get object's keys
         if (len(expected) > 0):
             keys = expected[0].keys()

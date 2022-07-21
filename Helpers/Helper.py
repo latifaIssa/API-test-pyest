@@ -9,3 +9,11 @@ class Helper:
             return path
         else:
             return f'../../{path}'
+
+
+    @staticmethod
+    def get_classification():
+        if "classification" in os.environ:
+            return os.environ['classification'].lower()
+        else:
+            return ""

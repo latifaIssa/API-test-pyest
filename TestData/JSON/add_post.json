@@ -1,6 +1,6 @@
 {
   "add_post_with_valid_data": {
-    "route": "posts",
+    "route": "posts/",
     "request": "post",
     "status_code": "201",
     "body": "",

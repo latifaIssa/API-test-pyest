@@ -9,6 +9,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'Helpers'))
 
 def pytest_addoption(parser):
     parser.addoption("--fromTerminal", action="store", default="")
+    parser.addoption("--classification", action="store", default="")
 
 def pytest_configure(config):
     os.environ['fromTerminal'] = config.getoption('--fromTerminal')
+    os.environ['classification'] = config.getoption('--classification')
