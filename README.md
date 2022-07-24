@@ -31,3 +31,6 @@ then open the allure report
 ```commandline
 allure serve allure-report/.
 ```
+
+To see a code to how read test cases from json file go to DDT_with_json branch
+To see a code to how read test cases from csv file go to ddt_with_csv branch
